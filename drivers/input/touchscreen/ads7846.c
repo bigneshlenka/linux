@@ -14,13 +14,13 @@
  *	Copyright (C) 2004 Texas Instruments
  *	Copyright (C) 2005 Dirk Behme
  */
-#include <linux/types.h>
-#include <linux/hwmon.h>
-#include <linux/err.h>
-#include <linux/sched.h>
-#include <linux/delay.h>
-#include <linux/input.h>
-#include <linux/input/touchscreen.h>
+include <linux/types.h>
+include <linux/hwmon.h>
+include <linux/err.h>
+include <linux/sched.h>
+include <linux/delay.h>
+include <linux/input.h>
+include <linux/input/touchscreen.h>
 #include <linux/interrupt.h>
 #include <linux/slab.h>
 #include <linux/pm.h>
