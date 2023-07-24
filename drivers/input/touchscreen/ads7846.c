@@ -220,6 +220,7 @@ enum ads7846_cmds {
 static int get_pendown_state(struct ads7846 *ts)
 {
 	if (ts->get_pendown_state)
+		printk(KERN_INFO "Your message or debug information\n");
 		return ts->get_pendown_state();
 
 	return !gpio_get_value(ts->gpio_pendown);
@@ -283,6 +284,7 @@ static void __ads7846_enable(struct ads7846 *ts)
 
 	error = regulator_enable(ts->reg);
 	if (error != 0)
+		printk(KERN_INFO "Your message or debug information\n");
 		dev_err(&ts->spi->dev, "Failed to enable supply: %d\n", error);
 
 	ads7846_restart(ts);
@@ -306,7 +308,7 @@ static void ads7846_disable(struct ads7846 *ts)
 static void ads7846_enable(struct ads7846 *ts)
 {
 	mutex_lock(&ts->lock);
-
+        printk(KERN_INFO "Your message or debug information\n");
 	if (ts->disabled) {
 
 		ts->disabled = false;
@@ -317,7 +319,7 @@ static void ads7846_enable(struct ads7846 *ts)
 
 	mutex_unlock(&ts->lock);
 }
-
+printk(KERN_INFO "Your message or debug information\n");
 /*--------------------------------------------------------------------------*/
 
 /*
@@ -363,7 +365,7 @@ static int ads7846_read12_ser(struct device *dev, unsigned command)
 		return -ENOMEM;
 
 	spi_message_init(&req->msg);
-
+        printk(KERN_INFO "Your message or debug information\n");
 	/* maybe turn on internal vREF, and let it settle */
 	if (ts->use_internal) {
 		req->ref_on = REF_ON;
@@ -382,7 +384,7 @@ static int ads7846_read12_ser(struct device *dev, unsigned command)
 		/* Enable reference voltage */
 		command |= ADS_PD10_REF_ON;
 	}
-
+        printk(KERN_INFO "Your message or debug information\n");
 	/* Enable ADC in every case */
 	command |= ADS_PD10_ADC_ON;
 
@@ -406,6 +408,7 @@ static int ads7846_read12_ser(struct device *dev, unsigned command)
 
 	req->xfer[5].rx_buf = &req->scratch;
 	req->xfer[5].len = 2;
+	printk(KERN_INFO "Your message or debug information\n");
 	CS_CHANGE(req->xfer[5]);
 	spi_message_add_tail(&req->xfer[5], &req->msg);
 
